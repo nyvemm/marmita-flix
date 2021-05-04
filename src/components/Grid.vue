@@ -379,28 +379,5 @@ $bp-five: 1921px;
       }
     }
   }
-
-  @media screen and (min-width: 1270px) {
-    .content-block:hover .img-block {
-      background: #fa709a;
-
-      background: -webkit-linear-gradient(
-        to right,
-        rgba(250, 112, 154, 0.5),
-        rgba(254, 225, 64, 0.5)
-      );
-
-      background: linear-gradient(
-        to right,
-        rgba(250, 112, 154, 0.5),
-        rgba(254, 225, 64, 0.5)
-      );
-
-      img {
-        opacity: 50%;
-        filter: grayscale(1);
-      }
-    }
-  }
 }
 </style>

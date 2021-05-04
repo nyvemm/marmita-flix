@@ -5,10 +5,6 @@ import he from 'he';
 async function getGames(url) {
     let response = await axios.get(url).catch(() => { return null })
 
-    if (response.status !== 200) {
-        console.log('Error: Fetching Data');
-        return null;
-    }
     return response.data
 }
 
