@@ -14,7 +14,7 @@
             :fetch="parseMovies"
             :fetchLink="getMovieLink"
             :max="-1"
-            :url="`https://ondeeubaixo.org/index.php?s=${this.query}`"
+            :url="`https://media-api-nyvemm.vercel.app/api/movies?s=${this.query}`"
             v-on:noResults="hasMovies = false"
           />
         </v-tab-item>
@@ -24,7 +24,7 @@
             :fetch="parseAnimes"
             :fetchLink="getAnimeLink"
             :max="-1"
-            :url="`https://animestorrent.com/?s=${this.query}`"
+            :url="`https://media-api-nyvemm.vercel.app/api/animes?s=${this.query}`"
             :search="true"
             v-on:noResults="hasAnimes = false"
           />
@@ -34,7 +34,7 @@
             :key="query"
             :fetch="parseGames"
             :max="-1"
-            :url="`http://rutor.info/search/0/8/000/0/${this.query}`"
+            :url="`https://media-api-nyvemm.vercel.app/api/games?s=${this.query}`"
             :search="true"
             :directUrl="true"
             v-on:noResults="hasGames = false"

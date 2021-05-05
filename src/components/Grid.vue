@@ -49,7 +49,14 @@
 
     <v-row justify="center">
       <v-dialog v-model="dialog" max-width="1200" class="dialog">
-        <v-card class="pb-4" v-if="loadingDialog">
+        <v-card
+          class="d-flex justify-center align-center"
+          height="300px"
+          v-if="loadingDialog && !clickData.links"
+        >
+          <h1>Houve um erro inesperado ao encontrar o link.</h1>
+        </v-card>
+        <v-card class="pb-4" v-else-if="loadingDialog">
           <v-card-title class="headline">
             {{ clickData.name }}
           </v-card-title>
@@ -141,8 +148,12 @@ export default {
         this.dialog = !this.dialog;
 
         const data = await this.fetchLink(content.url);
-        this.clickData.description = data.description;
-        this.clickData.links = data.links;
+        if (data) {
+          this.clickData.description = data.description;
+          this.clickData.links = data.links;
+          console.log(this.clickData)
+        }
+
         this.loadingDialog = true;
       }
     },
@@ -209,23 +220,31 @@ $bp-five: 1921px;
 
 /////////////////////////////////////////
 
+
+$vw-2: calc((100vw - 120px) / 2);
+$vh-2: calc(((100vw - 120px) / 2) * 1.5068493150684932);
 @media screen and (max-width: $bp-two) {
+  .container {
+    margin: 16px 0 16px 0;
+    padding: 0 50px;
+  }
+
   .content-block {
-    max-width: calc((100vw - 24px) / 2);
-    max-height: calc(100vh / 2);
+    max-width: $vw-2;
+    height: $vh-2 !important;
 
     .img-block {
-      width: calc((100vw - 24px) / 2);
-      height: calc(100vh / 2);
+      width: $vw-2;
+      height: $vh-2;
       img {
-        width: calc((100vw - 24px) / 2);
-        height: calc(100vh / 2);
+        width: 100%;
+        height: $vh-2;
       }
     }
     .content-info {
-      max-width: calc((100vw - 24px) / 2);
+      max-width: $vw-2;
       .content-name {
-        max-width: calc((100vw - 24px) / 2);
+        max-width: $vw-2;
       }
     }
     .content-rating {
@@ -233,23 +252,32 @@ $bp-five: 1921px;
     }
   }
 }
+
+$vw-3: calc((100vw - 120px) / 3);
+$vh-3: calc(((100vw - 120px) / 3) * 1.5068493150684932);
 @media screen and (min-width: $bp-two) and (max-width: $bp-three) {
+  .container {
+    margin: 16px 0 16px 0;
+    padding: 0 50px;
+    max-width: $bp-five;
+  }
+
   .content-block {
-    max-width: calc((100vw - 24px) / 3);
-    max-height: calc(100vh / 2);
+    max-width: $vw-3;
+    height: $vh-3 !important;
 
     .img-block {
-      width: calc((100vw - 24px) / 3);
-      height: calc(100vh / 2);
+      width: $vw-3;
+      height: $vh-3;
       img {
-        width: calc((100vw - 24px) / 3);
-        height: calc(100vh / 2);
+        width: 100%;
+        height: $vh-3;
       }
     }
     .content-info {
-      max-width: calc((100vw - 24px) / 3);
+      max-width: $vw-3;
       .content-name {
-        max-width: calc((100vw - 24px) / 3);
+        max-width: $vw-3;
       }
     }
     .content-rating {
@@ -258,27 +286,31 @@ $bp-five: 1921px;
   }
 }
 
+$vw-4: calc((100vw - 120px) / 4);
+$vh-4: calc(((100vw - 120px) / 4) * 1.5068493150684932);
 @media screen and (min-width: $bp-three) and (max-width: $bp-four) {
   .container {
-    margin: 16px 0 8px 0;
-    max-width: $bp-four;
+    margin: 16px 0 16px 0;
+    padding: 0 50px;
+    max-width: $bp-five;
   }
+
   .content-block {
-    max-width: calc((100vw - 24px) / 4);
-    max-height: calc(100vh / 2);
+    max-width: $vw-4;
+    height: $vh-4 !important;
 
     .img-block {
-      width: calc((100vw - 24px) / 4);
-      height: calc(100vh / 2);
+      width: $vw-4;
+      height: $vh-4;
       img {
-        width: calc((100vw - 24px) / 4);
-        height: calc(100vh / 2);
+        width: 100%;
+        height: $vh-4;
       }
     }
     .content-info {
-      max-width: calc((100vw - 24px) / 4);
+      max-width: $vw-4;
       .content-name {
-        max-width: calc((100vw - 24px) / 4);
+        max-width: $vw-4;
       }
     }
     .content-rating {
@@ -287,27 +319,31 @@ $bp-five: 1921px;
   }
 }
 
+$vw-5: calc((100vw - 120px) / 5);
+$vh-5: calc(((100vw - 120px) / 5) * 1.5068493150684932);
 @media screen and (min-width: $bp-four) and (max-width: $bp-five) {
   .container {
     margin: 16px 0 16px 0;
+    padding: 0 50px;
     max-width: $bp-five;
   }
+
   .content-block {
-    max-width: calc((100vw - 24px) / 5);
-    max-height: calc(100vh / 2);
+    max-width: $vw-5;
+    height: $vh-5 !important;
 
     .img-block {
-      width: calc((100vw - 24px) / 5);
-      height: calc(100vh / 2);
+      width: $vw-5;
+      height: $vh-5;
       img {
-        width: calc((100vw - 24px) / 5);
-        height: calc(100vh / 2);
+        width: 100%;
+        height: $vh-5;
       }
     }
     .content-info {
-      max-width: calc((100vw - 24px) / 5);
+      max-width: $vw-5;
       .content-name {
-        max-width: calc((100vw - 24px) / 5);
+        max-width: $vw-5;
       }
     }
     .content-rating {
