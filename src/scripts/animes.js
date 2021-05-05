@@ -8,7 +8,7 @@ async function getAnimes(url) {
 
 async function parseAnimes(max = 12, url = "https://media-api-nyvemm.vercel.app/api/animes") {
     const animes = await getAnimes(url);
-    return animes ? animes.slice(0, max) : [];
+    return animes ? animes.slice(0, max == -1 ? undefined : max) : [];
 }
 
 async function getAnimeLink(url) {

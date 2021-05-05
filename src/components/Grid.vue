@@ -136,7 +136,11 @@ export default {
   },
   methods: {
     handleImgError(img) {
-      this.contentData = this.contentData.filter((x) => x.img !== img);
+      for(let i = 0; i < this.contentData.length; i++) {
+        if(this.contentData[i].img === img) {
+          this.contentData[i].img = 'http://actar.com/wp-content/uploads/2015/12/nocover.jpg'
+        }
+      }
     },
 
     async changeDialog(content) {
@@ -151,7 +155,7 @@ export default {
         if (data) {
           this.clickData.description = data.description;
           this.clickData.links = data.links;
-          console.log(this.clickData)
+          console.log(this.clickData);
         }
 
         this.loadingDialog = true;
@@ -219,7 +223,6 @@ $bp-five: 1921px;
 }
 
 /////////////////////////////////////////
-
 
 $vw-2: calc((100vw - 120px) / 2);
 $vh-2: calc(((100vw - 120px) / 2) * 1.5068493150684932);
