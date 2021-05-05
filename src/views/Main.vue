@@ -14,13 +14,13 @@
       name="Animes"
       :key="2"
     />
-    <!-- <Grid
+    <Grid
       :fetch="parseGames"
       :max="max"
       name="Jogos"
       :directUrl="true"
       :key="3"
-    /> -->
+    />
   </div>
 </template>
 
