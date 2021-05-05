@@ -155,7 +155,6 @@ export default {
         if (data) {
           this.clickData.description = data.description;
           this.clickData.links = data.links;
-          console.log(this.clickData);
         }
 
         this.loadingDialog = true;
