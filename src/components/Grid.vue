@@ -49,17 +49,53 @@
 
     <v-row justify="center">
       <v-dialog v-model="dialog" max-width="1200" class="dialog">
-        <v-card
-          class="d-flex justify-center align-center"
-          height="300px"
-          v-if="loadingDialog && !clickData.links"
-        >
-          <h1>Houve um erro inesperado ao encontrar o link.</h1>
+        <v-card height="300px" v-if="loadingDialog && !clickData.links">
+          <v-btn icon dark @click="dialog = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+          <div
+            class="d-flex justify-center align-center"
+            style="width: 100%; height: 300px"
+          >
+            <h1>Houve um erro inesperado ao encontrar o link.</h1>
+          </div>
         </v-card>
         <v-card class="pb-4" v-else-if="loadingDialog">
-          <v-card-title class="headline">
-            {{ clickData.name }}
-          </v-card-title>
+          <v-row class="mx-0 my-0">
+            <v-col
+              cols="12"
+              lg="11"
+              md="11"
+              sm="11"
+              order="1"
+              order-sm="0"
+              order-md="0"
+              order-lg="0"
+              order-xl="0"
+            >
+              <v-card-title class="headline">
+                <span>
+                  {{ clickData.name }}
+                </span>
+              </v-card-title>
+            </v-col>
+            <v-col
+              cols="12"
+              lg="1"
+              md="1"
+              sm="1"
+              order="0"
+              order-sm="1"
+              order-md="1"
+              order-lg="1"
+              order-xl="1"
+              class="d-flex justify-end justify-md-center justify-sm-end align-center align-sm-start"
+            >
+              <v-btn icon dark large @click="dialog = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
           <v-row class="dialog-row mx-4">
             <v-col lg="3" md="4" xs="12" class="dialog-img">
               <img :src="clickData.img" :alt="clickData.name" />
@@ -136,9 +172,10 @@ export default {
   },
   methods: {
     handleImgError(img) {
-      for(let i = 0; i < this.contentData.length; i++) {
-        if(this.contentData[i].img === img) {
-          this.contentData[i].img = 'http://actar.com/wp-content/uploads/2015/12/nocover.jpg'
+      for (let i = 0; i < this.contentData.length; i++) {
+        if (this.contentData[i].img === img) {
+          this.contentData[i].img =
+            "http://actar.com/wp-content/uploads/2015/12/nocover.jpg";
         }
       }
     },
@@ -176,10 +213,15 @@ $bp-four: 1400px;
 $bp-five: 1921px;
 
 /* For dialog pane */
+
 @media screen and (max-width: $bp-three) {
   .headline {
     display: flex;
     justify-content: center;
+
+    span {
+      width: calc((100vw - 24px));
+    }
   }
   .dialog-row {
     .dialog-img {
@@ -219,12 +261,26 @@ $bp-five: 1921px;
       width: 100%;
     }
   }
+  .dialog-button-block {
+    button {
+      max-width: 816px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    span {
+      max-width: 780px;
+      white-space: nowrap;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+    }
+  }
 }
 
 /////////////////////////////////////////
 
-$vw-2: calc((100vw - 120px) / 2);
-$vh-2: calc(((100vw - 120px) / 2) * 1.5068493150684932);
+$vw-2: calc((100vw - 100px) / 2);
+$vh-2: calc(((100vw - 100px) / 2) * 1.5068493150684932);
 @media screen and (max-width: $bp-two) {
   .container {
     margin: 16px 0 16px 0;
@@ -288,8 +344,8 @@ $vh-3: calc(((100vw - 120px) / 3) * 1.5068493150684932);
   }
 }
 
-$vw-4: calc((100vw - 120px) / 4);
-$vh-4: calc(((100vw - 120px) / 4) * 1.5068493150684932);
+$vw-4: calc((100vw - 130px) / 4);
+$vh-4: calc(((100vw - 130px) / 4) * 1.5068493150684932);
 @media screen and (min-width: $bp-three) and (max-width: $bp-four) {
   .container {
     margin: 16px 0 16px 0;
@@ -321,8 +377,8 @@ $vh-4: calc(((100vw - 120px) / 4) * 1.5068493150684932);
   }
 }
 
-$vw-5: calc((100vw - 120px) / 5);
-$vh-5: calc(((100vw - 120px) / 5) * 1.5068493150684932);
+$vw-5: calc((100vw - 150px) / 5);
+$vh-5: calc(((100vw - 150px) / 5) * 1.5068493150684932);
 @media screen and (min-width: $bp-four) and (max-width: $bp-five) {
   .container {
     margin: 16px 0 16px 0;
