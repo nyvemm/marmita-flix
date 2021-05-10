@@ -75,6 +75,13 @@ export default {
   methods: {
     changeRoute(route) {
       if (this.$router.history.current.path !== route) {
+        //Gtag Event
+        this.$gtag.event("change-route", {
+          event_category: "routes",
+          event_label: "Changed route to: " + route,
+          value: 1,
+        });
+
         this.$router.push(route);
         this.query = "";
         this.expand = false;
@@ -82,6 +89,13 @@ export default {
     },
     redirect() {
       if (this.expand) {
+        //Gtag Event
+        this.$gtag.event("search", {
+          event_category: "search",
+          event_label: "Search query: " + this.query,
+          value: 1,
+        });
+
         this.$router.push({ path: "/search", query: { q: this.query } });
       } else {
         this.expand = true;

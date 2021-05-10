@@ -13,7 +13,14 @@
           @click="changeDialog(content)"
         >
           <div class="img-block">
-            <img :src="content.img" @error="handleImgError(content.img)" />
+            <img
+              :src="
+                content.img
+                  ? content.img
+                  : 'http://actar.com/wp-content/uploads/2015/12/nocover.jpg'
+              "
+              @error="handleImgError(content.img)"
+            />
           </div>
           <div class="content-info">
             <span class="content-genre blue--text" v-if="content.genre"
@@ -184,6 +191,13 @@ export default {
       if (this.directUrl) {
         this.openLink(content.url);
       } else {
+        //Gtag Event
+        this.$gtag.event("open-modal", {
+          event_category: "modal",
+          event_label: "Opened Model for: " + content.name,
+          value: 1,
+        });
+
         this.clickData = content;
         this.loadingDialog = false;
         this.dialog = !this.dialog;
@@ -199,6 +213,13 @@ export default {
     },
 
     openLink(url) {
+      //Gtag Event
+      this.$gtag.event("download-link", {
+        event_category: "download",
+        event_label: "Downloaded Content: " + url,
+        value: 1,
+      });
+
       window.open(url, "_self");
     },
   },
