@@ -3,22 +3,10 @@
     <v-container v-if="!loading" class="mb-4">
       <h2 class="mb-4">{{ name }}</h2>
       <v-row class="content-row" no-gutters>
-        <v-col
-          class="content-block"
-          md="2"
-          sm="2"
-          xs="6"
-          v-for="content in contentData"
-          :key="content.name"
-          @click="changeDialog(content)"
-        >
+        <v-col class="content-block" md="2" sm="2" xs="6" v-for="content in contentData" :key="content.name" @click="changeDialog(content)">
           <div class="img-block">
             <img
-              :src="
-                content.img
-                  ? content.img
-                  : 'http://actar.com/wp-content/uploads/2015/12/nocover.jpg'
-              "
+              :src="content.img ? content.img : 'http://actar.com/wp-content/uploads/2015/12/nocover.jpg'"
               @error="handleImgError(content.img)"
             />
           </div>
@@ -38,48 +26,29 @@
               readonly
               class="d-flex justify-center mb-2 content-rating"
             ></v-rating>
-            <span class="content-name text-center px-3">{{
-              content.name
-            }}</span>
+            <span class="content-name text-center px-3">{{ content.name }}</span>
           </div>
         </v-col>
       </v-row>
     </v-container>
     <v-container class="loading" v-else>
-      <v-progress-circular
-        indeterminate
-        color="red"
-        :size="70"
-        :width="7"
-      ></v-progress-circular>
+      <v-progress-circular indeterminate color="red" :size="70" :width="7"></v-progress-circular>
     </v-container>
 
     <v-row justify="center">
       <v-dialog v-model="dialog" max-width="1200" class="dialog">
+        <input type="text" id="dummy" />
         <v-card height="300px" v-if="loadingDialog && !clickData.links">
           <v-btn icon dark @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <div
-            class="d-flex justify-center align-center"
-            style="width: 100%; height: 300px"
-          >
+          <div class="d-flex justify-center align-center" style="width: 100%; height: 300px">
             <h1>Houve um erro inesperado ao encontrar o link.</h1>
           </div>
         </v-card>
         <v-card class="pb-4" v-else-if="loadingDialog">
           <v-row class="mx-0 my-0">
-            <v-col
-              cols="12"
-              lg="11"
-              md="11"
-              sm="11"
-              order="1"
-              order-sm="0"
-              order-md="0"
-              order-lg="0"
-              order-xl="0"
-            >
+            <v-col cols="12" lg="11" md="11" sm="11" order="1" order-sm="0" order-md="0" order-lg="0" order-xl="0">
               <v-card-title class="headline">
                 <span>
                   {{ clickData.name }}
@@ -103,43 +72,37 @@
               </v-btn>
             </v-col>
           </v-row>
-          <v-row class="dialog-row mx-4">
+          <v-row class="dialog-row mx-4 mb-4">
             <v-col lg="3" md="4" xs="12" class="dialog-img">
               <img :src="clickData.img" :alt="clickData.name" />
             </v-col>
             <v-col lg="9" md="8" xs="12">
               <div>
-                <v-card-text class="text-body-1">
-                  <b>Sinopse: </b>{{ clickData.description }}
-                </v-card-text>
+                <v-card-text class="text-body-1"> <b>Sinopse: </b>{{ clickData.description }} </v-card-text>
                 <div class="flex-column mx-4">
-                  <div
-                    class="dialog-button-block"
-                    v-for="link in clickData.links"
-                    :key="link.name"
-                  >
-                    <v-btn depressed class="mt-4" @click="openLink(link.url)">
-                      <span>
-                        {{ link.name }}
-                      </span>
-                    </v-btn>
+                  <div class="dialog-button-block" v-for="link in clickData.links" :key="link.name">
+                    <v-row>
+                      <v-col cols="12" sm="1" class="d-none d-sm-flex justify-end">
+                        <v-btn class="mt-4 d-flex justify-center " @click="copyLink(link.url)">
+                          <v-icon class="d-flex justify-center"> mdi-content-copy </v-icon>
+                        </v-btn>
+                      </v-col>
+                      <v-col cols="12" sm="11" class="d-flex justify-center justify-sm-start">
+                        <v-btn depressed class="mt-4" @click="openLink(link.url)">
+                          <span>
+                            {{ link.name }}
+                          </span>
+                        </v-btn>
+                      </v-col>
+                    </v-row>
                   </div>
                 </div>
               </div>
             </v-col>
           </v-row>
         </v-card>
-        <v-card
-          class="d-flex justify-center align-center"
-          height="300px"
-          v-else
-        >
-          <v-progress-circular
-            indeterminate
-            color="red"
-            :size="70"
-            :width="7"
-          ></v-progress-circular>
+        <v-card class="d-flex justify-center align-center" height="300px" v-else>
+          <v-progress-circular indeterminate color="red" :size="70" :width="7"></v-progress-circular>
         </v-card>
       </v-dialog>
     </v-row>
@@ -155,7 +118,7 @@ export default {
       dialog: false,
 
       clickData: {},
-      loadingDialog: false,
+      loadingDialog: false
     };
   },
   props: {
@@ -165,7 +128,7 @@ export default {
     name: String,
     url: String,
     search: Boolean,
-    directUrl: Boolean,
+    directUrl: Boolean
   },
   created() {
     this.fetch(this.max, this.url, this.search).then((media) => {
@@ -181,10 +144,14 @@ export default {
     handleImgError(img) {
       for (let i = 0; i < this.contentData.length; i++) {
         if (this.contentData[i].img === img) {
-          this.contentData[i].img =
-            "http://actar.com/wp-content/uploads/2015/12/nocover.jpg";
+          this.contentData[i].img = "http://actar.com/wp-content/uploads/2015/12/nocover.jpg";
         }
       }
+    },
+
+    copyLink(magnet) {
+      const clipboardData = window.clipboardData || navigator.clipboard;
+      clipboardData.writeText(magnet);
     },
 
     async changeDialog(content) {
@@ -195,7 +162,7 @@ export default {
         this.$gtag.event("open-modal", {
           event_category: "modal",
           event_label: "Opened Model for: " + content.name,
-          value: 1,
+          value: 1
         });
 
         this.clickData = content;
@@ -217,15 +184,14 @@ export default {
       this.$gtag.event("download-link", {
         event_category: "download",
         event_label: "Downloaded Content: " + url,
-        value: 1,
+        value: 1
       });
 
       window.open(url, "_self");
-    },
-  },
+    }
+  }
 };
 </script>
-
 
 <style lang="scss" scoped>
 $bp-two: 624px;
@@ -233,6 +199,25 @@ $bp-three: 930px;
 $bp-four: 1400px;
 $bp-five: 1921px;
 
+@media screen and (min-width: $bp-three) and (max-width: 1270px) {
+  .dialog-button-block {
+    margin-left: 2em;
+    display: flex;
+    justify-content: center;
+    button {
+      max-width: calc((100vw - 24px) / 1.9);
+      display: flex;
+      justify-content: flex-start;
+
+      span {
+        max-width: calc((100vw - 24px) / 2.1);
+        white-space: nowrap;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
 /* For dialog pane */
 
 @media screen and (max-width: $bp-three) {
@@ -284,13 +269,13 @@ $bp-five: 1921px;
   }
   .dialog-button-block {
     button {
-      max-width: 816px;
+      max-width: 742px;
       display: flex;
       justify-content: flex-start;
     }
 
     span {
-      max-width: 780px;
+      max-width: 700px;
       white-space: nowrap;
       overflow: hidden !important;
       text-overflow: ellipsis;

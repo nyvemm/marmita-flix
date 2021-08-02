@@ -14,7 +14,7 @@
   "resolved" "https://registry.nlark.com/@babel/compat-data/download/@babel/compat-data-7.14.0.tgz?cache=0&sync_timestamp=1619727549838&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fcompat-data%2Fdownload%2F%40babel%2Fcompat-data-7.14.0.tgz"
   "version" "7.14.0"
 
-"@babel/core@*", "@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.11.0", "@babel/core@^7.12.0", "@babel/core@^7.13.0", "@babel/core@^7.4.0-0":
+"@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.11.0", "@babel/core@^7.12.0", "@babel/core@^7.13.0", "@babel/core@^7.4.0-0":
   "integrity" "sha1-Rymf8+yNERtJPxqdBL+IwE5yjYg="
   "resolved" "https://registry.nlark.com/@babel/core/download/@babel/core-7.14.0.tgz?cache=0&sync_timestamp=1619727551970&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fcore%2Fdownload%2F%40babel%2Fcore-7.14.0.tgz"
   "version" "7.14.0"
@@ -2798,7 +2798,7 @@
     "browserslist" "^4.16.6"
     "semver" "7.0.0"
 
-"core-js@^3", "core-js@^3.6.5":
+"core-js@^3.6.5":
   "integrity" "sha1-rwh6Qzc/xucpQpF8Skw95D7VdNY="
   "resolved" "https://registry.nlark.com/core-js/download/core-js-3.11.2.tgz"
   "version" "3.11.2"
