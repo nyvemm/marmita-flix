@@ -37,7 +37,6 @@
 
     <v-row justify="center">
       <v-dialog v-model="dialog" max-width="1200" class="dialog">
-        <input type="text" id="dummy" />
         <v-card height="300px" v-if="loadingDialog && !clickData.links">
           <v-btn icon dark @click="dialog = false">
             <v-icon>mdi-close</v-icon>
