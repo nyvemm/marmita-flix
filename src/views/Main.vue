@@ -25,10 +25,10 @@
 </template>
 
 <script>
-import Grid from "@/components/Grid";
-import movies from "@/scripts/movies";
-import animes from "@/scripts/animes";
-import parseGames from "@/scripts/games";
+import Grid from '@/components/Grid'
+import movies from '@/scripts/movies'
+import animes from '@/scripts/animes'
+import parseGames from '@/scripts/games'
 
 export default {
   data() {
@@ -38,20 +38,20 @@ export default {
       parseAnimes: animes.parseAnimes,
       getAnimeLink: animes.getAnimeLink,
       parseGames: parseGames,
-      max: 0,
-    };
+      max: 0
+    }
   },
   components: {
-    Grid,
+    Grid
   },
   created() {
     if (930 < window.innerWidth && window.innerWidth < 1400) {
-      this.max = 4;
+      this.max = 4
     } else if (1400 < window.innerWidth && window.innerWidth < 1921) {
-      this.max = 5;
+      this.max = 25
     } else {
-      this.max = 6;
+      this.max = 6
     }
-  },
-};
+  }
+}
 </script>

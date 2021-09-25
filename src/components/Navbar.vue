@@ -1,53 +1,51 @@
 <template>
   <div class="cbox">
-    <div class="nav">
+    <div class="nav py-4">
       <v-row class="nav-row ps-4">
-        <v-col cols="3" class="d-flex justify-end align-center"
-          ><img @click="changeRoute('/')" src="@/assets/marmitaflix.png" />
+        <v-col cols="3" class="d-flex justify-end align-center">
+          <img @click="changeRoute('/')" src="@/assets/marmitaflix.png" />
         </v-col>
         <v-col
           cols="1"
           class="d-flex justify-center align-center"
           @click="changeRoute('/')"
-          ><span :class="currentRoute === '/' ? 'focus' : ''">Início</span>
+        >
+          <span :class="currentRoute === '/' ? 'focus' : ''">Início</span>
         </v-col>
         <v-col
           cols="1"
           class="d-flex justify-center align-center"
           @click="changeRoute('/movies')"
-          ><span :class="currentRoute === '/movies' ? 'focus' : ''"
-            >Filmes</span
-          >
+        >
+          <span :class="currentRoute === '/movies' ? 'focus' : ''">Filmes</span>
         </v-col>
         <v-col
           cols="1"
           class="d-flex justify-center align-center"
           @click="changeRoute('/animes')"
-          ><span :class="currentRoute === '/animes' ? 'focus' : ''"
-            >Animes</span
-          >
+        >
+          <span :class="currentRoute === '/animes' ? 'focus' : ''">Animes</span>
         </v-col>
         <v-col
           cols="1"
           class="d-flex justify-center align-center"
           @click="changeRoute('/games')"
-          ><span :class="currentRoute === '/games' ? 'focus' : ''">Jogos</span>
+        >
+          <span :class="currentRoute === '/games' ? 'focus' : ''">Jogos</span>
         </v-col>
         <v-col cols="5" class="d-flex justify-center align-center">
-          <v-scroll-x-transition>
-            <v-col cols="11" v-show="expand">
-              <v-text-field
-                color="red"
-                class="d-flex justify-center align-center text-input"
-                v-model="query"
-                v-on:keyup.enter="redirect"
-              ></v-text-field>
-            </v-col>
-          </v-scroll-x-transition>
-          <v-col cols="1" class="d-flex justify-center align-center">
-            <v-btn icon @click="redirect">
-              <v-icon large>mdi-magnify</v-icon>
-            </v-btn>
+          <v-col cols="12">
+            <v-text-field
+              color="red"
+              class="d-flex justify-center align-center text-input"
+              v-model="query"
+              filled
+              rounded
+              append-icon="mdi-magnify"
+              label="Pesquisar"
+              @click:append="redirect"
+              @keyup.enter="redirect"
+            ></v-text-field>
           </v-col>
         </v-col>
       </v-row>
@@ -60,51 +58,55 @@ export default {
   data() {
     return {
       expand: false,
-      currentRoute: "",
-      query: "",
-    };
+      currentRoute: '',
+      query: ''
+    }
   },
   watch: {
     $route(to) {
-      this.currentRoute = to.path;
-    },
+      this.currentRoute = to.path
+    }
   },
   created() {
-    this.currentRoute = this.$router.history.current.path;
+    this.currentRoute = this.$router.history.current.path
   },
   methods: {
     changeRoute(route) {
       if (this.$router.history.current.path !== route) {
         //Gtag Event
-        this.$gtag.event("change-route", {
-          event_category: "routes",
-          event_label: "Changed route to: " + route,
-          value: 1,
-        });
+        this.$gtag.event('change-route', {
+          event_category: 'routes',
+          event_label: 'Changed route to: ' + route,
+          value: 1
+        })
 
-        this.$router.push(route);
-        this.query = "";
-        this.expand = false;
+        this.$router.push(route)
+        this.query = ''
+        this.expand = false
       }
     },
     redirect() {
-      if (this.expand) {
-        //Gtag Event
-        this.$gtag.event("search", {
-          event_category: "search",
-          event_label: "Search query: " + this.query,
-          value: 1,
-        });
+      //Gtag Event
+      this.$gtag.event('search', {
+        event_category: 'search',
+        event_label: 'Search query: ' + this.query,
+        value: 1
+      })
 
-        this.$router.push({ path: "/search", query: { q: this.query } });
-      } else {
-        this.expand = true;
-      }
-    },
-  },
-};
+      this.$router.push({ path: '/search', query: { q: this.query } })
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
+span {
+  transition: all 0.5 ease;
+
+  &:hover {
+    color: #e50913;
+  }
+}
+
 @media screen and (max-width: 520px) {
   .cbox {
     display: block !important;

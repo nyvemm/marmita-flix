@@ -9,17 +9,17 @@
 </template>
 
 <script>
-import Grid from "@/components/Grid";
-import parseGames from "@/scripts/games";
+import Grid from '@/components/Grid'
+import parseGames from '@/scripts/games'
 
 export default {
   data() {
     return {
       parseGames: parseGames,
-    };
+    }
   },
   components: {
     Grid,
   },
-};
+}
 </script>

@@ -2,9 +2,9 @@
   <div>
     <div v-if="hasMovies || hasAnimes || hasGames">
       <v-tabs v-model="tab" background-color="transparent" color="white" grow>
-        <v-tab v-if="hasMovies">Filmes </v-tab>
-        <v-tab v-if="hasAnimes">Animes </v-tab>
-        <v-tab v-if="hasGames">Jogos </v-tab>
+        <v-tab v-if="hasMovies">Filmes</v-tab>
+        <v-tab v-if="hasAnimes">Animes</v-tab>
+        <v-tab v-if="hasGames">Jogos</v-tab>
       </v-tabs>
 
       <v-tabs-items v-model="tab">
@@ -59,15 +59,15 @@
 </template>
 
 <script>
-import Grid from "@/components/Grid";
-import movies from "@/scripts/movies";
-import animes from "@/scripts/animes";
-import parseGames from "@/scripts/games";
+import Grid from '@/components/Grid'
+import movies from '@/scripts/movies'
+import animes from '@/scripts/animes'
+import parseGames from '@/scripts/games'
 
 export default {
   data() {
     return {
-      query: "",
+      query: '',
       tab: null,
 
       hasAnimes: true,
@@ -79,26 +79,26 @@ export default {
       parseMovies: movies.parseMovies,
       getMovieLink: movies.getMovieLink,
       parseGames: parseGames,
-    };
+    }
   },
   components: {
     Grid,
   },
   watch: {
     $route(to) {
-      this.query = to.query.q;
-      this.hasAnimes = true;
-      this.hasMovies = true;
-      this.hasGames = true;
+      this.query = to.query.q
+      this.hasAnimes = true
+      this.hasMovies = true
+      this.hasGames = true
     },
   },
 
   created() {
-    this.parseGames = parseGames;
-    const url = new URLSearchParams(window.location.search);
-    this.query = url.get("q");
+    this.parseGames = parseGames
+    const url = new URLSearchParams(window.location.search)
+    this.query = url.get('q')
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

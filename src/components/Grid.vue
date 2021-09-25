@@ -2,18 +2,31 @@
   <div>
     <v-container v-if="!loading" class="mb-4">
       <h2 class="mb-4">{{ name }}</h2>
-      <v-row class="content-row" no-gutters>
-        <v-col class="content-block" md="2" sm="2" xs="6" v-for="content in contentData" :key="content.name" @click="changeDialog(content)">
+      <v-row class="content-row" justify="center">
+        <v-col
+          class="content-block ma-1"
+          md="2"
+          sm="2"
+          xs="6"
+          v-for="content in contentData"
+          :key="content.name"
+          @click="changeDialog(content)"
+        >
           <div class="img-block">
             <img
-              :src="content.img ? content.img : 'http://actar.com/wp-content/uploads/2015/12/nocover.jpg'"
+              c
+              :src="
+                content.img
+                  ? content.img
+                  : 'http://actar.com/wp-content/uploads/2015/12/nocover.jpg'
+              "
               @error="handleImgError(content.img)"
             />
           </div>
           <div class="content-info">
-            <span class="content-genre blue--text" v-if="content.genre"
-              ><p>{{ content.genre }}</p></span
-            >
+            <span class="content-genre blue--text" v-if="content.genre">
+              <p>{{ content.genre }}</p>
+            </span>
             <v-rating
               v-model="content.rating"
               v-if="content.rating"
@@ -26,13 +39,19 @@
               readonly
               class="d-flex justify-center mb-2 content-rating"
             ></v-rating>
-            <span class="content-name text-center px-3">{{ content.name }}</span>
+            <span class="content-name text-center px-3">
+              {{ content.name }}
+            </span>
           </div>
         </v-col>
       </v-row>
     </v-container>
     <v-container class="loading" v-else>
-      <v-progress-circular indeterminate color="red" :size="70" :width="7"></v-progress-circular>
+      <v-skeleton-loader type="image"></v-skeleton-loader>
+      <v-skeleton-loader type="image"></v-skeleton-loader>
+      <v-skeleton-loader type="image"></v-skeleton-loader>
+      <v-skeleton-loader type="image"></v-skeleton-loader>
+      <v-skeleton-loader type="image"></v-skeleton-loader>
     </v-container>
 
     <v-row justify="center">
@@ -41,13 +60,26 @@
           <v-btn icon dark @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <div class="d-flex justify-center align-center" style="width: 100%; height: 300px">
+          <div
+            class="d-flex justify-center align-center"
+            style="width: 100%; height: 300px"
+          >
             <h1>Houve um erro inesperado ao encontrar o link.</h1>
           </div>
         </v-card>
         <v-card class="pb-4" v-else-if="loadingDialog">
           <v-row class="mx-0 my-0">
-            <v-col cols="12" lg="11" md="11" sm="11" order="1" order-sm="0" order-md="0" order-lg="0" order-xl="0">
+            <v-col
+              cols="12"
+              lg="11"
+              md="11"
+              sm="11"
+              order="1"
+              order-sm="0"
+              order-md="0"
+              order-lg="0"
+              order-xl="0"
+            >
               <v-card-title class="headline">
                 <span>
                   {{ clickData.name }}
@@ -64,7 +96,11 @@
               order-md="1"
               order-lg="1"
               order-xl="1"
-              class="d-flex justify-end justify-md-center justify-sm-end align-center align-sm-start"
+              class="
+                d-flex
+                justify-end justify-md-center justify-sm-end
+                align-center align-sm-start
+              "
             >
               <v-btn icon dark large @click="dialog = false">
                 <v-icon>mdi-close</v-icon>
@@ -77,17 +113,41 @@
             </v-col>
             <v-col lg="9" md="8" xs="12">
               <div>
-                <v-card-text class="text-body-1"> <b>Sinopse: </b>{{ clickData.description }} </v-card-text>
+                <v-card-text class="text-body-1">
+                  <b>Sinopse:</b>
+                  {{ clickData.description }}
+                </v-card-text>
                 <div class="flex-column mx-4">
-                  <div class="dialog-button-block" v-for="link in clickData.links" :key="link.name">
+                  <div
+                    class="dialog-button-block"
+                    v-for="link in clickData.links"
+                    :key="link.name"
+                  >
                     <v-row>
-                      <v-col cols="12" sm="1" class="d-none d-sm-flex justify-end">
-                        <v-btn class="mt-4 d-flex justify-center " @click="copyLink(link.url)">
-                          <v-icon class="d-flex justify-center"> mdi-content-copy </v-icon>
+                      <v-col
+                        cols="12"
+                        sm="1"
+                        class="d-none d-sm-flex justify-end"
+                      >
+                        <v-btn
+                          class="mt-4 d-flex justify-center"
+                          @click="copyLink(link.url)"
+                        >
+                          <v-icon class="d-flex justify-center">
+                            mdi-content-copy
+                          </v-icon>
                         </v-btn>
                       </v-col>
-                      <v-col cols="12" sm="11" class="d-flex justify-center justify-sm-start">
-                        <v-btn depressed class="mt-4" @click="openLink(link.url)">
+                      <v-col
+                        cols="12"
+                        sm="11"
+                        class="d-flex justify-center justify-sm-start"
+                      >
+                        <v-btn
+                          depressed
+                          class="mt-4"
+                          @click="openLink(link.url)"
+                        >
                           <span>
                             {{ link.name }}
                           </span>
@@ -100,8 +160,17 @@
             </v-col>
           </v-row>
         </v-card>
-        <v-card class="d-flex justify-center align-center" height="300px" v-else>
-          <v-progress-circular indeterminate color="red" :size="70" :width="7"></v-progress-circular>
+        <v-card
+          class="d-flex justify-center align-center"
+          height="300px"
+          v-else
+        >
+          <v-progress-circular
+            indeterminate
+            color="red"
+            :size="70"
+            :width="7"
+          ></v-progress-circular>
         </v-card>
       </v-dialog>
     </v-row>
@@ -118,7 +187,7 @@ export default {
 
       clickData: {},
       loadingDialog: false
-    };
+    }
   },
   props: {
     fetch: Function,
@@ -130,66 +199,67 @@ export default {
     directUrl: Boolean
   },
   created() {
-    this.fetch(this.max, this.url, this.search).then((media) => {
-      this.contentData = media;
-      this.loading = false;
+    this.fetch(this.max, this.url, this.search).then(media => {
+      this.contentData = media
+      this.loading = false
 
       if (this.contentData.length === 0) {
-        this.$emit("noResults");
+        this.$emit('noResults')
       }
-    });
+    })
   },
   methods: {
     handleImgError(img) {
       for (let i = 0; i < this.contentData.length; i++) {
         if (this.contentData[i].img === img) {
-          this.contentData[i].img = "http://actar.com/wp-content/uploads/2015/12/nocover.jpg";
+          this.contentData[i].img =
+            'http://actar.com/wp-content/uploads/2015/12/nocover.jpg'
         }
       }
     },
 
     copyLink(magnet) {
-      const clipboardData = window.clipboardData || navigator.clipboard;
-      clipboardData.writeText(magnet);
+      const clipboardData = window.clipboardData || navigator.clipboard
+      clipboardData.writeText(magnet)
     },
 
     async changeDialog(content) {
       if (this.directUrl) {
-        this.openLink(content.url);
+        this.openLink(content.url)
       } else {
         //Gtag Event
-        this.$gtag.event("open-modal", {
-          event_category: "modal",
-          event_label: "Opened Model for: " + content.name,
+        this.$gtag.event('open-modal', {
+          event_category: 'modal',
+          event_label: 'Opened Model for: ' + content.name,
           value: 1
-        });
+        })
 
-        this.clickData = content;
-        this.loadingDialog = false;
-        this.dialog = !this.dialog;
+        this.clickData = content
+        this.loadingDialog = false
+        this.dialog = !this.dialog
 
-        const data = await this.fetchLink(content.url);
+        const data = await this.fetchLink(content.url)
         if (data) {
-          this.clickData.description = data.description;
-          this.clickData.links = data.links;
+          this.clickData.description = data.description
+          this.clickData.links = data.links
         }
 
-        this.loadingDialog = true;
+        this.loadingDialog = true
       }
     },
 
     openLink(url) {
       //Gtag Event
-      this.$gtag.event("download-link", {
-        event_category: "download",
-        event_label: "Downloaded Content: " + url,
+      this.$gtag.event('download-link', {
+        event_category: 'download',
+        event_label: 'Downloaded Content: ' + url,
         value: 1
-      });
+      })
 
-      window.open(url, "_self");
+      window.open(url, '_self')
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -443,6 +513,7 @@ $vh-5: calc(((100vw - 150px) / 5) * 1.5068493150684932);
     .img-block {
       cursor: pointer;
       img {
+        border-radius: 8px;
         filter: brightness(50%);
       }
     }
