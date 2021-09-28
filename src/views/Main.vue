@@ -48,9 +48,9 @@ export default {
     if (930 < window.innerWidth && window.innerWidth < 1400) {
       this.max = 4
     } else if (1400 < window.innerWidth && window.innerWidth < 1921) {
-      this.max = 25
+      this.max = 5
     } else {
-      this.max = 6
+      this.max = 5
     }
   }
 }

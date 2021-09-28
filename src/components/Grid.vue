@@ -2,7 +2,7 @@
   <div>
     <v-container v-if="!loading" class="mb-4">
       <h2 class="mb-4">{{ name }}</h2>
-      <v-row class="content-row" justify="center">
+      <v-row class="content-row mb-4" justify="start">
         <v-col
           class="content-block ma-1"
           md="2"
