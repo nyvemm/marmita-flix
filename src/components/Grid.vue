@@ -365,6 +365,7 @@ $vh-2: calc(((100vw - 100px) / 2) * 1.5068493150684932);
   .content-block {
     max-width: $vw-2;
     height: $vh-2 !important;
+    
 
     .img-block {
       width: $vw-2;
@@ -374,6 +375,14 @@ $vh-2: calc(((100vw - 100px) / 2) * 1.5068493150684932);
         height: $vh-2;
       }
     }
+    
+    .content-block hover{
+    transform-origin: center top;
+    transform: scale(1.1);
+    opacity: 1;
+    }
+    
+    
     .content-info {
       max-width: $vw-2;
       .content-name {
