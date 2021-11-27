@@ -29,7 +29,7 @@ export default {
     MOVIES_URL:
       process.env.NODE_ENV !== 'production'
         ? 'http://localhost:3008/api/movies/'
-        : 'https://media-api-nyvemm.vercel.app/api/movies',
+        : 'https://media-api-nyvemm.vercel.app/api/movies/',
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
