@@ -1,5 +1,5 @@
 <template>
-  <v-row class="nav-row py-6 content_wrapper" align="center">
+  <v-row class="nav-row py-6 content_wrapper mx-auto" align="center">
     <v-col cols="12" md="3" align="left">
       <img
         width="200"
