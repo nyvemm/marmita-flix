@@ -21,5 +21,6 @@ module.exports = {
     'vue/attribute-hyphenation': 'off',
     'vue/order-in-components': 1,
     'vue/require-default-prop': 'off',
+    'nuxt/no-globals-in-created': 'off',
   },
 }

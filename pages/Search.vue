@@ -70,7 +70,7 @@ export default {
   },
   data() {
     return {
-      query: '',
+      query: this.$route.query.q,
       tab: null,
 
       hasAnimes: true,
@@ -91,12 +91,6 @@ export default {
       this.hasMovies = true
       this.hasGames = true
     },
-  },
-
-  created() {
-    this.parseGames = parseGames
-    const url = new URLSearchParams(window.location.search)
-    this.query = url.get('q')
   },
 }
 </script>
